@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>2015</key>
+	<dict>
+		<key>March</key>
+		<dict/>
+		<key>January</key>
+		<dict>
+			<key>27</key>
+			<dict/>
+			<key>4</key>
+			<dict>
+				<key>description</key>
+				<string>Primeiro BUG juntos</string>
+				<key>date</key>
+				<date>2015-07-21T06:00:27Z</date>
+			</dict>
+		</dict>
+	</dict>
+	<key>2014</key>
+	<dict>
+		<key>March</key>
+		<dict/>
+		<key>January</key>
+		<dict>
+			<key>27</key>
+			<dict/>
+			<key>4</key>
+			<dict>
+				<key>fotos</key>
+				<array>
+					<string>0</string>
+					<string>1</string>
+					<string>2</string>
+					<string>3</string>
+					<string>4</string>
+				</array>
+				<key>description</key>
+				<string>Primeiro BUG juntos</string>
+				<key>date</key>
+				<date>2015-07-21T06:00:27Z</date>
+			</dict>
+		</dict>
+	</dict>
+</dict>
+</plist>

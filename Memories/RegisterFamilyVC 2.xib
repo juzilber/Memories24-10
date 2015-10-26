@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterFamilyVC" customModule="Memories" customModuleProvider="target">
+            <connections>
+                <outlet property="cancelBtn" destination="2Jh-bN-zLW" id="ho0-jA-bEP"/>
+                <outlet property="connetionTxt" destination="xZ7-s9-6kL" id="uxL-9Z-IcF"/>
+                <outlet property="familyImg" destination="htH-PR-awU" id="Rbr-yc-Qms"/>
+                <outlet property="nameTxt" destination="Bhr-68-wSs" id="EHL-3W-Ccz"/>
+                <outlet property="playBtn" destination="seE-Xc-AT6" id="o95-5v-FUu"/>
+                <outlet property="recordBtn" destination="CkS-KS-zKU" id="a51-uL-bsr"/>
+                <outlet property="saveBtn" destination="GPC-Vc-MU1" id="bdK-12-Nsb"/>
+                <outlet property="statusLbl" destination="BPl-DI-mQj" id="C2i-DQ-rCO"/>
+                <outlet property="stopBtn" destination="G5S-Kb-79F" id="2Fr-Os-Tbj"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="htH-PR-awU">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <color key="backgroundColor" red="0.040991878129999999" green="1" blue="0.0018299291680000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="298"/>
+                    </variation>
+                </imageView>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Relacionamento" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xZ7-s9-6kL">
+                    <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="112" y="421" width="177" height="30"/>
+                    </variation>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Jh-bN-zLW">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <state key="normal" title="Cancelar">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="139" y="473" width="61" height="30"/>
+                    </variation>
+                    <connections>
+                        <action selector="cancelRegistration:" destination="-1" eventType="touchUpInside" id="L7D-28-t4Q"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GPC-Vc-MU1">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <state key="normal" title="Salvar">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="208" y="473" width="54" height="30"/>
+                    </variation>
+                    <connections>
+                        <action selector="buttonSave:" destination="-1" eventType="touchUpInside" id="csI-i4-jJn"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nome" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bhr-68-wSs">
+                    <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="112" y="359" width="177" height="30"/>
+                    </variation>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CkS-KS-zKU">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <state key="normal" title="record">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="25" y="390" width="46" height="30"/>
+                    </variation>
+                    <connections>
+                        <action selector="recordAudio:" destination="-1" eventType="touchUpInside" id="Pf8-gN-ffw"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="seE-Xc-AT6">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <state key="normal" title="play">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="25" y="367" width="30" height="30"/>
+                    </variation>
+                    <connections>
+                        <action selector="playAudio:" destination="-1" eventType="touchUpInside" id="VeL-fd-kca"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5S-Kb-79F">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <state key="normal" title="stop">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="33" y="420" width="31" height="30"/>
+                    </variation>
+                    <connections>
+                        <action selector="stopAudio:" destination="-1" eventType="touchUpInside" id="aJl-P3-gwo"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BPl-DI-mQj">
+                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="18" y="473" width="65" height="21"/>
+                    </variation>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="xZ7-s9-6kL"/>
+                    <exclude reference="2Jh-bN-zLW"/>
+                    <exclude reference="GPC-Vc-MU1"/>
+                    <exclude reference="Bhr-68-wSs"/>
+                    <exclude reference="CkS-KS-zKU"/>
+                    <exclude reference="seE-Xc-AT6"/>
+                    <exclude reference="G5S-Kb-79F"/>
+                    <exclude reference="BPl-DI-mQj"/>
+                </mask>
+            </variation>
+            <variation key="widthClass=compact">
+                <mask key="subviews">
+                    <include reference="htH-PR-awU"/>
+                    <include reference="xZ7-s9-6kL"/>
+                    <include reference="2Jh-bN-zLW"/>
+                    <include reference="GPC-Vc-MU1"/>
+                    <include reference="Bhr-68-wSs"/>
+                    <include reference="CkS-KS-zKU"/>
+                    <include reference="seE-Xc-AT6"/>
+                    <include reference="G5S-Kb-79F"/>
+                    <include reference="BPl-DI-mQj"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="332" y="463"/>
+        </view>
+    </objects>
+</document>

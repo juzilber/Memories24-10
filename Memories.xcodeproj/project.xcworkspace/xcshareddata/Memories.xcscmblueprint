@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F644ACCCB6AEAC3E67EBAC041EEB440E45BC5DE5",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "F644ACCCB6AEAC3E67EBAC041EEB440E45BC5DE5" : 0,
+    "5BB93ED50FA2CD74FA78A3D1580B6138B4BD01A7" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "9E223626-FE11-48B6-A66B-B7060CF4EC06",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "F644ACCCB6AEAC3E67EBAC041EEB440E45BC5DE5" : "MemoriesGo\/",
+    "5BB93ED50FA2CD74FA78A3D1580B6138B4BD01A7" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Memories",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Memories.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/LexLoki\/GuanabaraStageBuilder",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5BB93ED50FA2CD74FA78A3D1580B6138B4BD01A7"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/juzilber\/Memories24-10.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F644ACCCB6AEAC3E67EBAC041EEB440E45BC5DE5"
+    }
+  ]
+}

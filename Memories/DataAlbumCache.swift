@@ -24,7 +24,7 @@ class DataAlbumCache {
     }
     
     private init(){
-        println("Singleton 'Cache' instanciado.")
+        print("Singleton 'Cache' instanciado.")
     }
     
     

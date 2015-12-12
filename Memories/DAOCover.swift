@@ -35,8 +35,8 @@ class DAOCover {
         coverPathDoc = documentPath.stringByAppendingPathComponent("Cover")
         coverPath = documentPath.stringByAppendingPathComponent("Cover/CoverData.plist");
         
-        println(coverPath)
-        println(coverPathDoc)
+        print(coverPath)
+        print(coverPathDoc)
         
         let fileManager = NSFileManager.defaultManager();
         
@@ -49,14 +49,19 @@ class DAOCover {
         }
         else
         {
-            fileManager.createDirectoryAtPath(coverPathDoc, withIntermediateDirectories: false, attributes: nil, error: nil)
+            do{
+                try fileManager.createDirectoryAtPath(coverPathDoc, withIntermediateDirectories: false, attributes: nil)
+            }
+            catch{
+                
+            }
             createDict()
         }
         
     }
     
     private func createDict(){
-        println("entrou!")
+        print("entrou!")
         contents = NSMutableDictionary(objects: ["",""], forKeys: ["name", "title"]);
         contents.writeToFile(coverPath, atomically: true);
         
@@ -100,12 +105,15 @@ class DAOCover {
     //funcao para deletar imagem
     private func deleteImg(name: String){
         let fileManager = NSFileManager.defaultManager();
-        fileManager.removeItemAtPath(coverPathDoc+"/"+name, error: nil)
+        do{
+            try fileManager.removeItemAtPath(coverPathDoc+"/"+name)
+        }
+        catch{}
     }
     
     //funcao pra salvar as imagens
     private func saveDataImgToPath(img : UIImage, name : String){
-        UIImagePNGRepresentation(img).writeToFile(coverPathDoc+"/"+name, atomically: true);
+        UIImagePNGRepresentation(img)!.writeToFile(coverPathDoc+"/"+name, atomically: true);
         
     }
 }

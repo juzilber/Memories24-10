@@ -32,7 +32,7 @@ class CoverVC: UIViewController {
         let myCover = daoCover.getData();
         if(myCover != nil){
             
-            println(myCover?.title)
+            print(myCover?.title)
             labelTitle.text = myCover?.title;
             labelName.text = myCover?.name;
             imageProfile.image = UIImage(contentsOfFile: myCover!.imageProfile)
@@ -41,7 +41,7 @@ class CoverVC: UIViewController {
 
             
         } else {
-            println("salvou nada")
+            print("salvou nada")
         }
         
         

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -25,15 +25,18 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X XXX" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HXM-T6-Vnb">
                         <rect key="frame" x="236" y="0.0" width="1800" height="55"/>
+                        <animations/>
                         <fontDescription key="fontDescription" name="Lavanderia-Regular" family="Lavanderia" pointSize="30"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kNh-Ay-2Zs">
                         <rect key="frame" x="8" y="12" width="220" height="180"/>
+                        <animations/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="era uma vez um lugarzinho no meio do nada com sabor de chocolate" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUN-uL-8u6">
                         <rect key="frame" x="236" y="56" width="156" height="106"/>
+                        <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" name="Comme-Medium" family="Comme" pointSize="16"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -41,6 +44,7 @@
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ylA-aK-FeW">
                         <rect key="frame" x="362" y="165" width="30" height="30"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="KTw-Oe-wY8"/>
                             <constraint firstAttribute="width" constant="30" id="ihm-Ym-PqD"/>
@@ -51,6 +55,7 @@
                         </state>
                     </button>
                 </subviews>
+                <animations/>
                 <color key="backgroundColor" red="0.6705882353" green="0.7843137255" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="QUN-uL-8u6" firstAttribute="centerX" secondItem="ylA-aK-FeW" secondAttribute="centerX" constant="-63" id="2rk-kL-Glh"/>
@@ -69,6 +74,7 @@
                     <constraint firstItem="QUN-uL-8u6" firstAttribute="top" secondItem="HXM-T6-Vnb" secondAttribute="bottom" constant="1" id="vEF-So-DxG"/>
                 </constraints>
             </tableViewCellContentView>
+            <animations/>
             <connections>
                 <outlet property="audioButton" destination="ylA-aK-FeW" id="7TX-nn-un0"/>
                 <outlet property="dateLabel" destination="HXM-T6-Vnb" id="V1I-oy-gcj"/>

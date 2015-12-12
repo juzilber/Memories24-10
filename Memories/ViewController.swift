@@ -25,10 +25,10 @@ class ViewController: UIViewController, UIPageViewControllerDataSource {
         
         self.pageViewController.dataSource = self
         
-        var startVC = self.viewControllerAtIndex(0) as ShowFactVC
-        var viewControllers = NSArray(object: startVC)
+        let startVC = self.viewControllerAtIndex(0) as ShowFactVC
+        let viewControllers = NSArray(object: startVC)
         
-        self.pageViewController.setViewControllers(viewControllers as [AnyObject], direction: .Forward, animated: true, completion: nil)
+        self.pageViewController.setViewControllers((viewControllers as! [UIViewController]), direction: .Forward, animated: true, completion: nil)
         self.pageViewController.view.frame = self.view.bounds
         
         self.addChildViewController(self.pageViewController)
@@ -46,7 +46,7 @@ class ViewController: UIViewController, UIPageViewControllerDataSource {
             
         }
         
-        var vc = ShowFactVC(nibName: "ShowFactVC", bundle: NSBundle.mainBundle())
+        let vc = ShowFactVC(nibName: "ShowFactVC", bundle: NSBundle.mainBundle())
         
         //THIS - se eu quiser alterar algo em show fact a partir daqui
         
@@ -58,7 +58,7 @@ class ViewController: UIViewController, UIPageViewControllerDataSource {
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         
-        var vc = viewController as! ShowFactVC
+        let vc = viewController as! ShowFactVC
         var index = vc.pageIndex as Int
         
         if (index == NSNotFound)
@@ -78,7 +78,7 @@ class ViewController: UIViewController, UIPageViewControllerDataSource {
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         
-        var vc = viewController as! ShowFactVC
+        let vc = viewController as! ShowFactVC
         var index = vc.pageIndex as Int
         
         if ((index == 0) || index == NSNotFound) {

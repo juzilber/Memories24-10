@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Comme-Medium.ttf">
@@ -28,11 +29,13 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="white.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="awk-KL-QZc">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="white" translatesAutoresizingMaskIntoConstraints="NO" id="awk-KL-QZc">
                     <rect key="frame" x="-7" y="-6" width="613" height="630"/>
+                    <animations/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Adi-tH-oMw">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
+                    <animations/>
                     <color key="backgroundColor" red="0.25490196079999999" green="0.31372549020000001" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="150" id="zbF-At-G05">
@@ -48,6 +51,7 @@
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Título" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n6N-pE-blO" userLabel=" Text Field Titulo">
                     <rect key="frame" x="200" y="285" width="200" height="30"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="F4Y-ot-CRj"/>
                         <constraint firstAttribute="width" constant="200" id="sjn-xo-U69"/>
@@ -55,8 +59,9 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileedit.png" translatesAutoresizingMaskIntoConstraints="NO" id="WQr-2m-PfM">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileedit" translatesAutoresizingMaskIntoConstraints="NO" id="WQr-2m-PfM">
                     <rect key="frame" x="225" y="71" width="150" height="150"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="150" id="0aX-1v-lHv"/>
                         <constraint firstAttribute="width" constant="150" id="OPs-Ng-TjK"/>
@@ -70,6 +75,7 @@
                 </imageView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Autor(a)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NW1-wo-buS" userLabel="Text Field Nome">
                     <rect key="frame" x="200" y="489" width="200" height="30"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="YFi-Bi-iKT"/>
                         <constraint firstAttribute="height" constant="30" id="mxU-Hd-m4W"/>
@@ -79,6 +85,7 @@
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="feito por" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cps-dq-Edd">
                     <rect key="frame" x="207" y="371" width="184" height="59"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="59" id="hP5-96-CZc"/>
                         <constraint firstAttribute="width" constant="184" id="heK-85-dTf"/>
@@ -89,6 +96,7 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IaW-FE-FEo">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="37" id="383-Nh-aa5"/>
                         <constraint firstAttribute="width" constant="43" id="UMb-qZ-xuW"/>
@@ -114,9 +122,11 @@
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slice 1.png" translatesAutoresizingMaskIntoConstraints="NO" id="W3J-7S-6Qc">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <animations/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mV5-uq-uOh">
                     <rect key="frame" x="527" y="35" width="43" height="30"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="CLw-xy-GC5">
                             <variation key="widthClass=compact" constant="50"/>
@@ -135,6 +145,7 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UHN-cK-JXn">
                     <rect key="frame" x="30" y="35" width="61" height="30"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="DRn-vt-yGt">
                             <variation key="widthClass=compact" constant="50"/>
@@ -152,6 +163,7 @@
                     </connections>
                 </button>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="cps-dq-Edd" firstAttribute="centerY" secondItem="NW1-wo-buS" secondAttribute="centerY" constant="-103.5" id="2Yy-LI-b3Y">
@@ -252,8 +264,8 @@
     </objects>
     <resources>
         <image name="Slice 1.png" width="476" height="80"/>
-        <image name="profileedit.png" width="512" height="512"/>
+        <image name="profileedit" width="512" height="512"/>
         <image name="questionedit.png" width="512" height="486"/>
-        <image name="white.jpg" width="3888" height="2592"/>
+        <image name="white" width="3888" height="2592"/>
     </resources>
 </document>

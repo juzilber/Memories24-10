@@ -28,14 +28,14 @@ class DAOFamily{
     
     init(){
         
-        var documentPath : String = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String;
+        var documentPath : String = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
         var imgPath:String = documentPath
         //caminho ate a pasta family
         familyPathDoc = documentPath.stringByAppendingPathComponent("Family")
         
         familyPath = documentPath.stringByAppendingPathComponent("Family/FamilyData.plist");
         
-        println(familyPath)
+        print(familyPath)
         
         let fileManager = NSFileManager.defaultManager();
         
@@ -45,21 +45,23 @@ class DAOFamily{
         }
             
         else
-            
         {
-            fileManager.createDirectoryAtPath(familyPathDoc, withIntermediateDirectories: false, attributes: nil, error: nil)
+            do{
+                try fileManager.createDirectoryAtPath(familyPathDoc, withIntermediateDirectories: false, attributes: nil)
+            }
+            catch{
+                print("error creating directory")
+            }
             
             createDict()
         }
     }
     
     private func createDict(){
-        
         contents = NSMutableArray();
         //var dict = contents[0] as! NSMutableDictionary
         //dict["subtitle"] = "NAda que preste"
         contents.writeToFile(familyPath, atomically: true);
-        println("HFRIGIWRGWQJPR");
         
     }
     //inicializa a classe
@@ -99,13 +101,20 @@ class DAOFamily{
         
         let fileManager = NSFileManager.defaultManager();
         var nIndex = Int(0);
-        let existingImages = fileManager.contentsOfDirectoryAtPath(familyPathDoc, error: nil) as! [String];
+        let existingImages : [String]
+        do{
+            existingImages = try fileManager.contentsOfDirectoryAtPath(familyPathDoc);
+        }
+        catch{
+            print("error getting data of familypathdoc, to save img");
+            return "100000";
+        }
         var str = "\(nIndex).png"
         while(exists(str, vec: existingImages)){
             nIndex++;
             str = "\(nIndex).png"
         }
-        UIImagePNGRepresentation(img).writeToFile(familyPathDoc+"/"+str, atomically: true);
+        UIImagePNGRepresentation(img)!.writeToFile(familyPathDoc+"/"+str, atomically: true);
         return str;
     }
     
@@ -116,5 +125,11 @@ class DAOFamily{
             }
         }
         return false;
+    }
+}
+
+extension String{
+    func stringByAppendingPathComponent(string : String) -> String{
+        return self+"/"+string;
     }
 }

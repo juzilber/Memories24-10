@@ -23,7 +23,7 @@ class DAOAudio: NSObject {
         var audioName : String = ""
         if audioArray == nil {
             audioArray = NSMutableArray()
-            println("adad")
+            print("adad")
         }
         if audioArray.count == 0 {
             audioName = "0.caf"
@@ -46,26 +46,42 @@ class DAOAudio: NSObject {
         audioArray.addObject(audioDict)
         audioArray.writeToFile(path, atomically: false)
         let fileManager = NSFileManager.defaultManager()
-        fileManager.copyItemAtPath(rootPath.stringByAppendingPathComponent("temp.caf"), toPath: rootPath.stringByAppendingPathComponent(audioName), error: nil)
-        println(audioName)
+        do{
+            try fileManager.copyItemAtPath(rootPath.stringByAppendingPathComponent("temp.caf"), toPath: rootPath.stringByAppendingPathComponent(audioName))
+        }
+        catch{
+            print("error copying item");
+        }
+        print(audioName)
     }
     
     /**************************************************************************/
     
     class func deleteAudio(index: Int) {
-        var rootPath:NSString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! NSString
-        var path:NSString = rootPath.stringByAppendingPathComponent("DaoAudio.plist")
-        var fileManager = NSFileManager.defaultManager()
+        let rootPath:NSString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
+        let path:NSString = rootPath.stringByAppendingPathComponent("DaoAudio.plist")
+        let fileManager = NSFileManager.defaultManager()
         
         // Se o arquivo nao existir
         if (!fileManager.fileExistsAtPath(path as String)) {
-            var sourcePath: String = NSBundle.mainBundle().pathForResource("DaoAudio", ofType: "plist")!;
-            fileManager.copyItemAtPath(sourcePath, toPath: path as String, error: nil)
+            
+            let sourcePath: String = NSBundle.mainBundle().pathForResource("DaoAudio", ofType: "plist")!;
+            do{
+                try fileManager.copyItemAtPath(sourcePath, toPath: path as String)
+            }
+            catch{
+                print("Error copying \(sourcePath) to \(path)")
+            }
         }
-        var audioArray : NSMutableArray! = NSMutableArray(contentsOfFile: path as String)
+        let audioArray : NSMutableArray! = NSMutableArray(contentsOfFile: path as String)
         let audioDict : NSDictionary = audioArray[index] as! NSDictionary
         let audioName : String = audioDict.valueForKey("audioName") as! String
-        fileManager.removeItemAtPath(rootPath.stringByAppendingPathComponent(audioName), error:nil)
+        do{
+            try fileManager.removeItemAtPath(rootPath.stringByAppendingPathComponent(audioName))
+        }
+        catch{
+            print("Erro removing file at \(rootPath.stringByAppendingPathComponent(audioName))")
+        }
         audioArray.removeObjectAtIndex(index)
         audioArray?.writeToFile(path as String, atomically: false)
     }
@@ -74,17 +90,17 @@ class DAOAudio: NSObject {
     
     //funcao q pega da plist e salva
     class func getAllAudio() -> [DAOAudio] {
-        var rootPath: String = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
+        let rootPath: String = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
         let path : String = getPlistPath(rootPath)
-        var audioArray : NSMutableArray! = NSMutableArray(contentsOfFile: path)
-        var audioDict : NSMutableDictionary = NSMutableDictionary()
+        let audioArray : NSMutableArray! = NSMutableArray(contentsOfFile: path)
+        let audioDict : NSMutableDictionary = NSMutableDictionary()
         if audioArray == nil || audioArray.count == 0 {
             return []
         }
         var audios : [DAOAudio] = []
         for var i = 0 ; i < audioArray.count; i++ {
             let dict : NSDictionary = audioArray[i] as! NSDictionary
-            var audioName : String = dict.valueForKey("audioName") as! String
+            let audioName : String = dict.valueForKey("audioName") as! String
             audios.append(DAOAudio())
             //antes: DAOAudio(title, audioName: audioName))
         }
@@ -93,13 +109,18 @@ class DAOAudio: NSObject {
     
     //Funcao para pegar a plist
     private class func getPlistPath(rootPath: String) -> String {
-        var path: String = rootPath.stringByAppendingPathComponent("DaoAudio.plist")
-        var fileManager = NSFileManager.defaultManager()
+        let path: String = rootPath.stringByAppendingPathComponent("DaoAudio.plist")
+        let fileManager = NSFileManager.defaultManager()
         
         // Se o arquivo nao existir
         if (!fileManager.fileExistsAtPath(path)) {
-            var sourcePath: String = NSBundle.mainBundle().pathForResource("DaoAudio", ofType: "plist")!;
-            fileManager.copyItemAtPath(sourcePath, toPath: path, error: nil)
+            let sourcePath: String = NSBundle.mainBundle().pathForResource("DaoAudio", ofType: "plist")!;
+            do{
+                try fileManager.copyItemAtPath(sourcePath, toPath: path)
+            }
+            catch{
+                print("Error copying \(sourcePath) to \(path)")
+            }
         }
         return path
     }

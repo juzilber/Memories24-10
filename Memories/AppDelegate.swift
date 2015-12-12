@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         
-        var type = UIUserNotificationType.Badge | UIUserNotificationType.Alert | UIUserNotificationType.Sound;
-        var setting = UIUserNotificationSettings(forTypes: type, categories: nil);
+        //var types = [UIUserNotificationType.Badge,UIUserNotificationType.Alert,UIUserNotificationType.Sound];
+        let setting = UIUserNotificationSettings(forTypes: [.Badge,.Alert,.Sound], categories: nil);
         UIApplication.sharedApplication().registerUserNotificationSettings(setting);
         UIApplication.sharedApplication().registerForRemoteNotifications();
         
@@ -26,10 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
   
         //Definir Root View Controller
-        var registerCoverVC: RegisterCoverVC = RegisterCoverVC(nibName:"RegisterCoverVC", bundle: nil)
-        var showFactVC: ShowFactVC = ShowFactVC(nibName:"ShowFactVC", bundle: nil)
-        var registerFactVC: RegisterFactVC = RegisterFactVC(nibName:"RegisterFactVC", bundle: nil)
-        var viewController: ViewController = ViewController(nibName:"ViewController", bundle: nil)
+        let registerCoverVC: RegisterCoverVC = RegisterCoverVC(nibName:"RegisterCoverVC", bundle: nil)
+        let showFactVC: ShowFactVC = ShowFactVC(nibName:"ShowFactVC", bundle: nil)
+        let registerFactVC: RegisterFactVC = RegisterFactVC(nibName:"RegisterFactVC", bundle: nil)
+        let viewController: ViewController = ViewController(nibName:"ViewController", bundle: nil)
         window?.rootViewController = registerCoverVC
 
         
@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let cal = NSCalendar.currentCalendar()
         let datefor = NSDate()
         let components = NSDateComponents()
-        let comp = cal.components(.MonthCalendarUnit | .DayCalendarUnit | .YearCalendarUnit, fromDate: datefor)
+        let comp = cal.components([NSCalendarUnit.Month,  NSCalendarUnit.Day, NSCalendarUnit.Year], fromDate: datefor);
         
         
         components.year = comp.year
@@ -64,14 +64,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let nextDate: NSDateComponents = NSDateComponents()
         nextDate.minute = 1
-        let fireDateNotification: NSDate = cal.dateByAddingComponents(nextDate, toDate: date, options: NSCalendarOptions(0))!
+        let fireDateNotification: NSDate = cal.dateByAddingComponents(nextDate, toDate: date, options: NSCalendarOptions(rawValue: 0))!
         
         
         var localNotification: UILocalNotification = UILocalNotification()
         localNotification.alertAction = "Entrar no App"
         localNotification.alertBody = "Volte e registre seus melhores momentos"
         localNotification.fireDate = fireDateNotification
-        localNotification.repeatInterval = NSCalendarUnit.CalendarUnitDay
+        localNotification.repeatInterval = NSCalendarUnit.Day;
     }
 
     func applicationWillEnterForeground(application: UIApplication) {

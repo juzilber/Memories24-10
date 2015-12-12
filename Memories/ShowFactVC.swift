@@ -23,7 +23,7 @@ class ShowFactVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var id:Int!
 
     @IBAction func editFacts(sender: AnyObject) {
-        var controller: RegisterFactVC = RegisterFactVC(nibName:"RegisterFactVC", bundle:NSBundle.mainBundle())
+        let controller: RegisterFactVC = RegisterFactVC(nibName:"RegisterFactVC", bundle:NSBundle.mainBundle())
         
         self.presentViewController(controller, animated: false, completion: nil)
     }
@@ -33,7 +33,7 @@ class ShowFactVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         super.viewDidLoad()
         
         //Registra as duas células diferentes
-        var cellLeft = UINib(nibName: "FactCellLeft", bundle: nil)
+        let cellLeft = UINib(nibName: "FactCellLeft", bundle: nil)
         tableView.registerNib(cellLeft, forCellReuseIdentifier: "CellLeft")
         
         tableView.delegate = self
@@ -46,7 +46,7 @@ class ShowFactVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         screenSize = UIScreen.mainScreen().bounds
         screenHeight = screenSize.height
         screenWidht = screenSize.width
-        println("height: \(screenHeight) \nwidht: \(screenWidht)")
+        print("height: \(screenHeight) \nwidht: \(screenWidht)")
         configureRowHeight()
             }
 
@@ -67,7 +67,7 @@ class ShowFactVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         cell = tableView.dequeueReusableCellWithIdentifier("CellLeft", forIndexPath: indexPath) as! FactCellLeftController
         cell.dateLabel.text = "0 jan 00"
         cell.subtitleLabel.text = "meu primo henrique olha como o sorriso dele é bonito ele é tao feliz"
-        var photo:UIImage = UIImage(named: "\(id)")!
+        let photo:UIImage = UIImage(named: "\(id)")!
         cell.photoView.image = photo
 
         return cell
@@ -78,7 +78,7 @@ class ShowFactVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     //Define a altura de cada célula
     func configureRowHeight() {
         tableView.rowHeight = screenHeight/2 - 18
-        println(" rowHeight: \(tableView.rowHeight)")
+        print(" rowHeight: \(tableView.rowHeight)")
     }
     
     

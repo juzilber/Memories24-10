@@ -14,7 +14,7 @@ class SummaryCollectionCell: UICollectionViewCell {
     @IBOutlet var descriptionLbl: UILabel!
     
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
 
     }
     override func awakeFromNib() {

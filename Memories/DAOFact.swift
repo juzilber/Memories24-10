@@ -44,7 +44,7 @@ class DAOFact {
         
         factPath = documentPath.stringByAppendingPathComponent("Fact/FactData.plist");
         
-        println(factPath)
+        print(factPath)
         
         let fileManager = NSFileManager.defaultManager();
         
@@ -57,9 +57,12 @@ class DAOFact {
         else
             
         {
-            
-            fileManager.createDirectoryAtPath(factPathDoc, withIntermediateDirectories: false, attributes: nil, error: nil)
-            
+            do{
+                try fileManager.createDirectoryAtPath(factPathDoc, withIntermediateDirectories: false, attributes: nil)
+            }
+            catch{
+                print("Error creating directory at \(factPathDoc)")
+            }
             createDict()
             
         }
@@ -228,7 +231,14 @@ class DAOFact {
         let fileManager = NSFileManager.defaultManager();
         var names = [String]();
         var nIndex = Int(0);
-        let existingImages = fileManager.contentsOfDirectoryAtPath(factPathDoc, error: nil) as! [String];
+        let existingImages : [String];
+        do{
+            existingImages = try fileManager.contentsOfDirectoryAtPath(factPathDoc)
+        }
+        catch{
+            print("Error reading contents of directory: \(factPathDoc)")
+            return [];
+        }
         for img in imgs {
             //enquanto o indice existe
             var str = "\(nIndex).png"
@@ -236,7 +246,7 @@ class DAOFact {
                 nIndex++;
                 str = "\(nIndex).png"
             }
-            UIImagePNGRepresentation(img).writeToFile(factPathDoc+"/"+str, atomically: true);
+            UIImagePNGRepresentation(img)!.writeToFile(factPathDoc+"/"+str, atomically: true);
             names.append(str);
         }
         

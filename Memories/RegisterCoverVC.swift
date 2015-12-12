@@ -11,7 +11,7 @@ import UIKit
 class RegisterCoverVC:UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     @IBAction func tutorialButton(sender: AnyObject) {
         
-        var controller: TutorialVC = TutorialVC(nibName:"TutorialVC", bundle:NSBundle.mainBundle())
+        let controller: TutorialVC = TutorialVC(nibName:"TutorialVC", bundle:NSBundle.mainBundle())
         
         presentViewController(controller, animated: true, completion: nil)
     }
@@ -82,8 +82,7 @@ class RegisterCoverVC:UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     //funcao para escolher a imagem. IF apertar botao da imagem redonda, muda a imageView. ELSE muda a imagem do botao
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             
             if( chamada == "Imagem Redonda" ){
@@ -107,7 +106,7 @@ class RegisterCoverVC:UIViewController, UIImagePickerControllerDelegate, UINavig
         // if the tapped view is a UIImageView then set it to imageview
         
         if let imageView = gesture.view as? UIImageView {
-            println("Image Tapped")
+            print("Image Tapped")
             
             //Here you can initiate your new ViewController
             
@@ -125,12 +124,12 @@ class RegisterCoverVC:UIViewController, UIImagePickerControllerDelegate, UINavig
     //botao que salva as infos e leva direto pra DAOCover
     @IBAction func buttonSave(sender: AnyObject) {
         
-        var cover: Cover = Cover()
+        let cover: Cover = Cover()
         
-        cover.title = textFieldTitle.text
-        cover.name = textFieldName.text
+        cover.title = textFieldTitle.text!
+        cover.name = textFieldName.text!
         
-        var daoCover = DAOCover()
+        let daoCover = DAOCover()
         
         daoCover.saveData(cover, imageProfile: imageView.image!, imageBackground: buttonTeste2.imageView!.image)
        
@@ -167,7 +166,7 @@ class RegisterCoverVC:UIViewController, UIImagePickerControllerDelegate, UINavig
     
     //botao para acessar a troca de imagem de capa
     @IBAction func buttonTesteAcao(sender: AnyObject) {
-        println("Image Tapped")
+        print("Image Tapped")
         
         imageCoverEdit.allowsEditing = false
         imageCoverEdit.sourceType = .PhotoLibrary

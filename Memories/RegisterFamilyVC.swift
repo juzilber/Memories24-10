@@ -80,9 +80,8 @@ class RegisterFamilyVC: UIViewController, UIImagePickerControllerDelegate, UITex
     }
     
     //funcao para escolher a imagem. IF apertar botao da imagem redonda, muda a imageView. ELSE muda a imagem do botao
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        
-         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             
             if( call == "Imagem Redonda" ){
                 familyImg.contentMode = .ScaleAspectFill
@@ -100,7 +99,7 @@ class RegisterFamilyVC: UIViewController, UIImagePickerControllerDelegate, UITex
         // if the tapped view is a UIImageView then set it to imageview
         
         if let imageView = gesture.view as? UIImageView {
-            println("Image Tapped")
+            print("Image Tapped")
             
             //Here you can initiate your new ViewController
             
@@ -125,8 +124,8 @@ class RegisterFamilyVC: UIViewController, UIImagePickerControllerDelegate, UITex
             statusLbl.text = s
             recorder.updateMeters()
             // if you want to draw some graphics...
-            var apc0 = recorder.averagePowerForChannel(0)
-            var peak0 = recorder.peakPowerForChannel(0)
+            let apc0 = recorder.averagePowerForChannel(0)
+            let peak0 = recorder.peakPowerForChannel(0)
         }
     }
 
@@ -142,13 +141,13 @@ class RegisterFamilyVC: UIViewController, UIImagePickerControllerDelegate, UITex
 
     @IBAction func buttonSave(sender: AnyObject) {
         
-        var family: Family = Family()
+        let family: Family = Family()
         
         family.connection = connetionTxt.text
-        family.subtitle = nameTxt.text
+        family.subtitle = nameTxt.text!
         let img = familyImg.image;
         
-        var daoFamily = DAOFamily()
+        let daoFamily = DAOFamily()
         daoFamily.saveNewFamily(family, photo: img!);
         
         let summaryVC = ShowSummaryVC(nibName: "ShowSummaryC", bundle: nil)
@@ -174,7 +173,7 @@ class RegisterFamilyVC: UIViewController, UIImagePickerControllerDelegate, UITex
         }
         
         if recorder == nil {
-            println("recording. recorder nil")
+            print("recording. recorder nil")
             recordBtn.setTitle("Pause", forState:.Normal)
             playBtn.enabled = false
             stopBtn.enabled = true
@@ -183,12 +182,12 @@ class RegisterFamilyVC: UIViewController, UIImagePickerControllerDelegate, UITex
         }
         
         if recorder != nil && recorder.recording {
-            println("pausing")
+            print("pausing")
             recorder.pause()
             recordBtn.setTitle("Continue", forState:.Normal)
             
         } else {
-            println("recording")
+            print("recording")
             recordBtn.setTitle("Pause", forState:.Normal)
             playBtn.enabled = false
             stopBtn.enabled = true
@@ -198,7 +197,7 @@ class RegisterFamilyVC: UIViewController, UIImagePickerControllerDelegate, UITex
     }
     
     @IBAction func stopAudio(sender: AnyObject) {
-        println("stop")
+        print("stop")
         
         recorder?.stop()
         player?.stop()
@@ -207,13 +206,12 @@ class RegisterFamilyVC: UIViewController, UIImagePickerControllerDelegate, UITex
         
         recordBtn.setTitle("Record", forState:.Normal)
         let session:AVAudioSession = AVAudioSession.sharedInstance()
-        var error: NSError?
-        if !session.setActive(false, error: &error) {
-            println("could not make session inactive")
-            if let e = error {
-                println(e.localizedDescription)
-                return
-            }
+        do{
+            try session.setActive(false)
+        }
+        catch{
+            print("could not make session inactive")
+            return
         }
         playBtn.enabled = true
         stopBtn.enabled = false
@@ -227,16 +225,13 @@ class RegisterFamilyVC: UIViewController, UIImagePickerControllerDelegate, UITex
     
     func play() {
         
-        println("playing")
-        var error: NSError?
+        print("playing")
         
         if let r = recorder {
-            self.player = AVAudioPlayer(contentsOfURL: r.url, error: &error)
-            if self.player == nil {
-                if let e = error {
-                    println(e.localizedDescription)
-                }
+            do{
+                self.player = try AVAudioPlayer(contentsOfURL: r.url)
             }
+            catch{}
         }
         
         stopBtn.enabled = true
@@ -248,37 +243,35 @@ class RegisterFamilyVC: UIViewController, UIImagePickerControllerDelegate, UITex
     }
 
     func setupRecorder() {
-        var format = NSDateFormatter()
+        let format = NSDateFormatter()
         format.dateFormat="yyyy-MM-dd-HH-mm-ss"
-        var currentFileName = "recording-\(format.stringFromDate(NSDate())).m4a"
-        println(currentFileName)
+        let currentFileName = "recording-\(format.stringFromDate(NSDate())).m4a"
+        print(currentFileName)
         
         var dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-        var docsDir: AnyObject = dirPaths[0]
-        var soundFilePath = docsDir.stringByAppendingPathComponent(currentFileName)
+        let docsDir: AnyObject = dirPaths[0]
+        let soundFilePath = docsDir.stringByAppendingPathComponent(currentFileName)
         soundFileURL = NSURL(fileURLWithPath: soundFilePath)
         let filemanager = NSFileManager.defaultManager()
         if filemanager.fileExistsAtPath(soundFilePath) {
             // probably won't happen. want to do something about it?
-            println("sound exists")
+            print("sound exists")
         }
         
-        var recordSettings:[NSObject: AnyObject] = [
-            AVFormatIDKey: kAudioFormatAppleLossless,
+        let recordSettings:[String: AnyObject] = [
+            //AVFormatIDKey: kAudioFormatAppleLossless,
             AVEncoderAudioQualityKey : AVAudioQuality.Max.rawValue,
             AVEncoderBitRateKey : 320000,
             AVNumberOfChannelsKey: 2,
             AVSampleRateKey : 44100.0
         ]
-        var error: NSError?
-        recorder = AVAudioRecorder(URL: soundFileURL!, settings: recordSettings, error: &error)
-        if let e = error {
-            println(e.localizedDescription)
-        } else {
-            recorder.delegate = self
-            recorder.meteringEnabled = true
-            recorder.prepareToRecord() // creates/overwrites the file at soundFileURL
+        do{
+            recorder = try AVAudioRecorder(URL: soundFileURL!, settings: recordSettings)
         }
+        catch{}
+        recorder.delegate = self
+        recorder.meteringEnabled = true
+        recorder.prepareToRecord() // creates/overwrites the file at soundFileURL
     }
     
     func recordWithPermission(setup:Bool) {
@@ -287,7 +280,7 @@ class RegisterFamilyVC: UIViewController, UIImagePickerControllerDelegate, UITex
         if (session.respondsToSelector("requestRecordPermission:")) {
             AVAudioSession.sharedInstance().requestRecordPermission({(granted: Bool)-> Void in
                 if granted {
-                    println("Permission to record granted")
+                    print("Permission to record granted")
                     self.setSessionPlayAndRecord()
                     if setup {
                         self.setupRecorder()
@@ -299,28 +292,27 @@ class RegisterFamilyVC: UIViewController, UIImagePickerControllerDelegate, UITex
                         userInfo:nil,
                         repeats:true)
                 } else {
-                    println("Permission to record not granted")
+                    print("Permission to record not granted")
                 }
             })
         } else {
-            println("requestRecordPermission unrecognized")
+            print("requestRecordPermission unrecognized")
         }
     }
     
     func setSessionPlayAndRecord() {
         let session:AVAudioSession = AVAudioSession.sharedInstance()
-        var error: NSError?
-        if !session.setCategory(AVAudioSessionCategoryPlayAndRecord, error:&error) {
-            println("could not set session category")
-            if let e = error {
-                println(e.localizedDescription)
-            }
+        do{
+            try session.setCategory(AVAudioSessionCategoryPlayAndRecord)
         }
-        if !session.setActive(true, error: &error) {
-            println("could not make session active")
-            if let e = error {
-                println(e.localizedDescription)
-            }
+        catch {
+            print("could not set session category")
+        }
+        do{
+            try session.setActive(true)
+        }
+        catch {
+            print("could not make session active")
         }
     }
     
@@ -343,11 +335,11 @@ class RegisterFamilyVC: UIViewController, UIImagePickerControllerDelegate, UITex
     }
     
     func background(notification:NSNotification) {
-        println("background")
+        print("background")
     }
     
     func foreground(notification:NSNotification) {
-        println("foreground")
+        print("foreground")
     }
 
 
@@ -355,45 +347,45 @@ class RegisterFamilyVC: UIViewController, UIImagePickerControllerDelegate, UITex
 
 
 // MARK: AVAudioRecorderDelegate
-extension RegisterFamilyVC : AVAudioRecorderDelegate {
+extension RegisterFamilyVC{
     
-    func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!,
+    func audioRecorderDidFinishRecording(recorder: AVAudioRecorder,
         successfully flag: Bool) {
-            println("finished recording \(flag)")
+            print("finished recording \(flag)")
             stopBtn.enabled = false
             playBtn.enabled = true
             recordBtn.setTitle("Record", forState:.Normal)
             
             // iOS8 and later
-            var alert = UIAlertController(title: "Recorder",
+            let alert = UIAlertController(title: "Recorder",
                 message: "Finished Recording",
                 preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "Keep", style: .Default, handler: {action in
-                println("keep was tapped")
+                print("keep was tapped")
             }))
             alert.addAction(UIAlertAction(title: "Delete", style: .Default, handler: {action in
-                println("delete was tapped")
+                print("delete was tapped")
                 self.recorder.deleteRecording()
             }))
             self.presentViewController(alert, animated:true, completion:nil)
     }
     
-    func audioRecorderEncodeErrorDidOccur(recorder: AVAudioRecorder!,
-        error: NSError!) {
-            println("\(error.localizedDescription)")
+    func audioRecorderEncodeErrorDidOccur(recorder: AVAudioRecorder,
+        error: NSError?) {
+            print("\(error!.localizedDescription)")
     }
 }
 
 // MARK: AVAudioPlayerDelegate
-extension RegisterFamilyVC : AVAudioPlayerDelegate {
-    func audioPlayerDidFinishPlaying(player: AVAudioPlayer!, successfully flag: Bool) {
-        println("finished playing \(flag)")
+extension RegisterFamilyVC{
+    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
+        print("finished playing \(flag)")
         recordBtn.enabled = true
         stopBtn.enabled = false
     }
     
-    func audioPlayerDecodeErrorDidOccur(player: AVAudioPlayer!, error: NSError!) {
-        println("\(error.localizedDescription)")
+    func audioPlayerDecodeErrorDidOccur(player: AVAudioPlayer, error: NSError?) {
+        print("\(error!.localizedDescription)")
     }
 }
 

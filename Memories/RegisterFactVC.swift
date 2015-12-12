@@ -20,7 +20,7 @@ class RegisterFactVC: UIViewController, UITableViewDataSource, UITableViewDelega
   
     
     @IBAction func cancelButton(sender: AnyObject) {
-        var controller: ViewController = ViewController(nibName:"ViewController", bundle:NSBundle.mainBundle())
+        let controller: ViewController = ViewController(nibName:"ViewController", bundle:NSBundle.mainBundle())
         
         self.presentViewController(controller, animated: false, completion: nil)
     }
@@ -30,10 +30,10 @@ class RegisterFactVC: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         
         //Registra as duas células diferentes
-        var cellLeft = UINib(nibName: "RegFactCellLeft", bundle: nil)
+        let cellLeft = UINib(nibName: "RegFactCellLeft", bundle: nil)
         tableView.registerNib(cellLeft, forCellReuseIdentifier: "RegCellLeft")
         
-        var cellRight = UINib(nibName: "RegFactCellRight", bundle: nil)
+        let cellRight = UINib(nibName: "RegFactCellRight", bundle: nil)
         tableView.registerNib(cellRight, forCellReuseIdentifier: "RegCellRight")
         
         tableView.delegate = self
@@ -43,7 +43,7 @@ class RegisterFactVC: UIViewController, UITableViewDataSource, UITableViewDelega
         screenSize = UIScreen.mainScreen().bounds
         screenHeight = screenSize.height
         screenWidht = screenSize.width
-        println("height: \(screenHeight) \nwidht: \(screenWidht)")
+        print("height: \(screenHeight) \nwidht: \(screenWidht)")
         configureRowHeight()
         
         //desabilita scroll, selection, separator
@@ -86,7 +86,7 @@ class RegisterFactVC: UIViewController, UITableViewDataSource, UITableViewDelega
             
             cell.datePicker.text = "\(formatter.stringFromDate(date))"
             cell.subtitleTextView.text = "show do criolo na fundicao progresso um sucesso eta homem bom"
-            var photo:UIImage = UIImage(named: "imageB")!
+            let photo:UIImage = UIImage(named: "imageB")!
             cell.photoView.image = photo
             
             return cell
@@ -96,7 +96,7 @@ class RegisterFactVC: UIViewController, UITableViewDataSource, UITableViewDelega
             
             cell.datePicker.text = "\(formatter.stringFromDate(date))"
             cell.subtitleTextView.text = "meu primo henrique olha como o sorriso dele é bonito ele é tao feliz"
-            var photo:UIImage = UIImage(named: "imageB")!
+            let photo:UIImage = UIImage(named: "imageB")!
             cell.photoView.image = photo
             
             return cell
@@ -108,7 +108,7 @@ class RegisterFactVC: UIViewController, UITableViewDataSource, UITableViewDelega
     //Define a altura de cada célula
     func configureRowHeight() {
         tableView.rowHeight = screenHeight/3 - 18
-        println(" rowHeight: \(tableView.rowHeight)")
+        print(" rowHeight: \(tableView.rowHeight)")
     }
     
     
